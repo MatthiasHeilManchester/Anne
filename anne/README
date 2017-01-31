@@ -1,0 +1,191 @@
+Make the oomph-lib home directory: 
+
+    mkdir version_anne
+    cd version_anne
+
+Checkout oomph-lib from our public repository:
+
+    svn checkout svn://oomph-lib.maths.man.ac.uk/release/trunk
+
+It now lives in a directory called trunk; go there:
+
+    cd trunk
+
+We'll put your directory in the user drivers directory:
+
+    cd user_drivers
+
+Clone from github:
+
+    git clone https://github.com/MatthiasHeilManchester/Anne.git
+
+Your user driver now sits in a directory called Anne:
+
+Back to the oomph-lib home directory
+
+    cd ..
+
+Build the thing (see below for options):
+
+    ./autogen.sh 
+
+This takes a while; when done go to your directory:
+
+    cd user_drivers/Anne/anne/
+
+Build the executable:
+
+    make anne
+
+Run it (indirectly via script which also does post-processing)
+
+    ./run.bash 
+
+Look at the results:
+
+    cd RESLT/
+    paraview --state=../flow.pvsm
+
+
+
+##################################################################
+##################################################################
+
+TRANSCRIPT OF MY BUILD PROCESS. This builds an extra slow version!
+
+##################################################################
+##################################################################
+
+
+mheil@Precision-M6800:~/version_anne/trunk$ ./autogen.sh 
+                     [Doing normal build.]
+ 
+============================================================= 
+        oomph-lib interactive installation script
+============================================================= 
+ 
+ 
+ 
+I'm going to install the distribution (the lib and include directories)
+in:
+ 
+     /home/mheil/version_anne/trunk/build
+ 
+ 
+Is this OK? y/n [default y]: 
+ 
+============================================================= 
+ 
+Build directory is: 
+ 
+      /home/mheil/version_anne/trunk/build
+ 
+--> The include directory will be in: 
+ 
+     /home/mheil/version_anne/trunk/build/include
+ 
+--> The lib directory will be in: 
+ 
+     /home/mheil/version_anne/trunk/build/lib
+ 
+etc.       
+ 
+============================================================= 
+ 
+Self tests
+==========
+Following the installation of oomph-lib you can run a comprehensive set of
+self tests with 'make check -k' or with './bin/parallel_self_test.py'. The
+latter version tends to be much faster because it performs multiple
+self-tests at the same time.
+ 
+Would you like to automatically run self tests 
+(serially) if the build is successful? y/n [default n]: n
+ 
+======================================================================
+
+Choose an alternative configuration file 
+1 :  bluefern_aix
+2 :  bluefern_xlc_linux
+3 :  build_web_version
+4 :  clang3.5
+5 :  clang3.5_full_opt
+6 :  default
+7 :  gcc_symlinks
+8 :  gcc_symlinks_debug_paranoid
+9 :  gcc_symlinks_debug_paranoid_range_checking
+10 :  gcc_symlinks_debug_paranoid_with_blas_and_lapack
+11 :  gcc_symlinks_debug_paranoid_with_blas_and_lapack_trilinos_and_hypre
+12 :  gcc_symlinks_debug_paranoid_with_doc
+13 :  gcc_symlinks_no_doc
+14 :  gcc_symlinks_with_blas_and_lapack_trilinos_and_hypre
+15 :  horace
+16 :  horace_with_mpi_self_tests
+17 :  intel
+18 :  mac_osx_debug
+19 :  mac_osx_mpi_debug
+20 :  mac_osx_paranoid_debug_range_checking
+21 :  mpi_build_mumps_and_scalapack
+22 :  mpi_debug
+23 :  mpi_debug_paranoid_with_blas_lapack_trilinos_hypre
+24 :  mpi_debug_with_blas_lapack_trilinos_hypre
+25 :  mpi_with_blas_lapack_trilinos_hypre
+26 :  biolaptop_lam
+27 :  biolaptop_lam_paranoid_debug
+28 :  biolaptop_lam_paranoid_debug_range_check
+29 :  biolaptop_serial
+30 :  biolaptop_serial_paranoid_debug
+31 :  biolaptop_serial_paranoid_debug_range_check
+32 :  csf_gcc
+33 :  hector_2b
+34 :  hector_2b_paranoid_range_check
+35 :  hector_parallel
+36 :  hector_parallel_debug
+37 :  hector_parallel_paranoid_debug
+38 :  hector_parallel_paranoid_debug_rangecheck
+39 :  hector_serial_paranoid_debug
+40 :  hector_with_own_libraries
+41 :  leylandii
+42 :  leylandii_paranoid_debug
+43 :  leylandii_paranoid_debug_range_check
+44 :  mpi_debug_paranoid
+45 :  mpi_simple
+46 :  mpi_with_paranoid_and_range_checking_and_blas_lapack_trilinos_hypre
+47 :  wulf_gcc4.3.2
+48 :  wulf_gcc4.3.2_debug_paranoid_no_doc-patrick_edit
+49 :  wulf_gcc4.3.2-serial-debug_paranoid_no_doc_-patrick_edit
+50 :  wulfling
+51 :  wulfling_debug_paranoid
+52 :  wulfling_debug_paranoid_nodoc
+53 :  wulfling_debug_paranoid_rangecheck
+54 :  ubuntu_13.10
+55 :  ubuntu_13.10_mpi
+
+Enter the Desired configuration file [1-55]
+Enter 0 to specify the options on the command line
+9
+ 
+Configure options are: 
+--enable-suppress-doc --enable-symbolic-links-for-headers CXXFLAGS="-g -DPARANOID -DRANGE_CHECKING -Wall" CFLAGS="-g -Wall"  FFLAGS="-g -Wall"  FFLAGS_NO_OPT="-O0" 
+Is this OK? y/n [default y]: y
+
+
+Build behaviour after failure
+=============================
+You can build/install/test the library using "make -k". This 
+keeps going after a failure and therefore builds/tests whatever 
+it can, but makes it harder to spot errors.
+ 
+Build with "make -k"? y/n [default y]: 
+ 
+
+
+Minimise output from make process
+=================================
+You can run ask for make to be run (more) silently, (via the 
+"make -s" option) which doesn't echo commands. 
+ 
+Build with "make -s"? y/n [default n]: 
+ 
+The interactive part of the build process is over.
+
