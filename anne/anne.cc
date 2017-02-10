@@ -62,8 +62,8 @@ namespace Global_Parameters
   //               (1) All these numbers must have some relation to
   //                   the Reynolds number (I just set them to 1)
   //               (2) Add uniform background flow
-  double a=1.0;
-  double omega_0=1.0;
+  double a=0.3;
+  double omega_0=1.25;
   double h=1.0;
 
   // Top vortex
